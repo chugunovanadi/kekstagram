@@ -1,3 +1,1 @@
-import {getPictures} from './mock-data.js';
-
-console.log(getPictures());
+import './rendering-minies.js';
