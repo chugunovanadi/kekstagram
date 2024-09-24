@@ -668,6 +668,12 @@ main {
   text-align: center;
   border: none;
 }
+.error_hashtag {
+  margin-bottom: 10px;
+}
+.error_description {
+  margin-top: 10px;
+}
 
 .text__hashtags {
   width: 450px;

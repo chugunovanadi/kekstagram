@@ -12,8 +12,8 @@ randomUserImages.forEach( ({url, comments, likes, description}) => {
   picture.querySelector('.picture__likes').textContent = likes;
   pictureContainer.append(picture);
 
-  picture.onclick = () => {
-    openBigPicture(({url, comments, likes, description}));
-  };
-});
+  picture.addEventListener('click', () => {
+    openBigPicture({url, comments, likes, description});
+  });
 
+});

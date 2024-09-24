@@ -7,5 +7,8 @@ function getRandomPositiveInteger (a, b) {
 function checkCommentLength (string, maxLength) {
   return string.length <= maxLength;
 }
+function isEscapeKey (evt) {
+  return evt.key === 'Escape';
+}
+export {getRandomPositiveInteger, isEscapeKey};
 
-export {getRandomPositiveInteger};
