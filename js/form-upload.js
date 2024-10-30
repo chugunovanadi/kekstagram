@@ -96,3 +96,5 @@ function validateHashtag() {
 
   return true;
 }
+
+export {form};

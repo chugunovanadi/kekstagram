@@ -629,7 +629,7 @@ main {
 .effects__radio:focus + .effects__label .effects__preview {
   outline: auto 5px highlight;
 }
-
+/* эффекты на фото */
 .effects__preview--chrome {
   -webkit-filter: grayscale(1);
           filter: grayscale(1);
