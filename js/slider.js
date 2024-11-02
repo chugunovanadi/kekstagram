@@ -1,7 +1,6 @@
-import {form} from './form-upload.js';
+import {form, previewImage} from './form-upload.js';
 const sliderElement = document.querySelector('.effect-level__slider');
 const effectLevelValue = document.querySelector('.effect-level__value');
-const previewImage = document.querySelector('.img-upload__preview');
 
 const sliderEffectParameters = [
   {
@@ -104,3 +103,5 @@ function onSliderUpdate() {
 }
 
 sliderElement.noUiSlider.on('update', onSliderUpdate);
+
+export {previewImage};

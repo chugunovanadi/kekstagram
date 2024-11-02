@@ -1,6 +1,8 @@
 import {isEscapeKey} from './utils.js';
+import {resetScaleDefault} from './image-scale.js';
 
 const form = document.querySelector('.img-upload__form');
+const previewImage = document.querySelector('.img-upload__preview');
 const uploadFile = form.querySelector('#upload-file');
 const cancelButton = form.querySelector('#upload-cancel');
 const commentField = form.querySelector('.text__description');
@@ -73,6 +75,7 @@ function closePublication() {
   hashtagField.removeEventListener('input', onHashtagFieldInput);
   form.removeEventListener('submit', onFormSubmit);
   form.reset();
+  resetScaleDefault();
 }
 
 function validateHashtag() {
@@ -97,4 +100,4 @@ function validateHashtag() {
   return true;
 }
 
-export {form};
+export {form, previewImage};
