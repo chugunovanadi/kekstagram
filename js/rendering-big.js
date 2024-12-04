@@ -20,7 +20,7 @@ function onPopupKeydown(evt) {
     closeBigPicture();
   }
 }
-
+// внутри openBigPicture по id картинки получить url, comments, likes, description для этой картинки
 function openBigPicture({url, comments, likes, description}) {
   bigPictureСontainer.classList.remove('hidden');
   document.body.classList.add('modal-open');
