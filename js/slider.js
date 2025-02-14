@@ -1,4 +1,4 @@
-import {form, previewImage} from './form-upload.js';
+import {form, previewImage, uploadFile} from './form-upload.js';
 const sliderElement = document.querySelector('.effect-level__slider');
 const effectLevelValue = document.querySelector('.effect-level__value');
 
@@ -76,6 +76,9 @@ function updateSliderByChosenEffect() {
     start: chosenEffect.max,
     step: chosenEffect.step,
   });
+  if (chosenEffect === defaultEffect) {
+    sliderElement.classList.add('hidden');
+  }
 }
 
 function onFormChange(evt) {
@@ -88,20 +91,25 @@ function onFormChange(evt) {
 
 form.addEventListener('change', onFormChange);
 
-//ф-я реагирует на все изменения слайдера (из js все переключения и связь ползунка с эффектом на фотке previewImage)
 function onSliderUpdate() {
-  previewImage.style.filter = '';
+  previewImage.style.filter = 'none';
   previewImage.className = '';
   effectLevelValue.value = '';
   if (chosenEffect === defaultEffect) {
     sliderElement.classList.add('hidden');
   }
   const sliderValue = sliderElement.noUiSlider.get();
-  effectLevelValue.value = sliderValue ; //по ТЗ запись в скрытое окно
+  effectLevelValue.value = sliderValue ;
   previewImage.style.filter = `${chosenEffect.filter}(${sliderValue}${chosenEffect.unit})`;
-  previewImage.classList.add(`effects__preview--${chosenEffect.name}`); //по ТЗ добавить картинке CSS-класс, соответствующий эффекту
+  previewImage.classList.add(`effects__preview--${chosenEffect.name}`);
 }
 
 sliderElement.noUiSlider.on('update', onSliderUpdate);
 
-export {previewImage};
+uploadFile.addEventListener('change', () => {
+  previewImage.style.filter = 'none';
+  previewImage.className = '';
+  effectLevelValue.value = '';
+  chosenEffect = defaultEffect;
+  sliderElement.classList.add('hidden');
+});

@@ -1,9 +1,10 @@
-import {isEscapeKey} from './utils.js';
+import {isEscapeKey, showLoadingError} from './utils.js';
 import {resetScaleDefault} from './image-scale.js';
 import { sendData } from './api.js';
 
 const form = document.querySelector('.img-upload__form');
-const previewImage = document.querySelector('.img-upload__preview');
+const previewImage = document.querySelector('.img-upload__preview img');
+const effectsMiniesPreviews = document.querySelectorAll('.effects__preview');
 const uploadFile = form.querySelector('#upload-file');
 const cancelButton = form.querySelector('#upload-cancel');
 const commentField = form.querySelector('.text__description');
@@ -17,6 +18,7 @@ const errorTitleBox = errorTitle.querySelector('.error__inner');
 const errorSendButton = errorTitle.querySelector('.error__button');
 const MAX_VALID_LENGTH_HASHTAG = 5;
 const MAX_VALID_LENGTH_DESCRIPTION = 140;
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 
 function onCancelButtonClick() {
   closePublication();
@@ -143,7 +145,17 @@ function openPublication() {
 }
 
 uploadFile.addEventListener('change', () => {
-  openPublication();
+  const file = uploadFile.files[0];
+  const fileName = file.name.toLowerCase();
+  const matches = FILE_TYPES.some((element) => fileName.endsWith(element));
+  if (matches) {
+    previewImage.src = URL.createObjectURL(file);
+    effectsMiniesPreviews.forEach((preview) => { preview.style.backgroundImage = `url('${previewImage.src}')`; });
+    openPublication();
+  }
+  else {
+    showLoadingError('Недоступный тип файла');
+  }
 });
 
 function closePublication() {
@@ -187,4 +199,4 @@ function validateHashtag() {
   return true;
 }
 
-export {form, previewImage};
+export {form, previewImage, uploadFile};

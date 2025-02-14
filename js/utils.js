@@ -4,13 +4,13 @@ function getRandomPositiveInteger (a, b) {
   const result = Math.random() * (max - min + 1) + min;
   return Math.floor(result);
 }
-function checkCommentLength (string, maxLength) {
-  return string.length <= maxLength;
-}
+
 function isEscapeKey (evt) {
   return evt.key === 'Escape';
 }
+
 const SHOW_TIME = 7000;
+
 function showLoadingError(message) {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = 100;
@@ -28,5 +28,13 @@ function showLoadingError(message) {
 
   setTimeout(() => { alertContainer.remove(); }, SHOW_TIME);
 }
-export {getRandomPositiveInteger, isEscapeKey, showLoadingError};
+
+function debounce (callback, timeoutDelay) {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+export {getRandomPositiveInteger, isEscapeKey, showLoadingError, debounce};
 

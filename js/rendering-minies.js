@@ -4,6 +4,7 @@ const pictureContainer= document.querySelector('.pictures');
 const templatePicture = document.querySelector('#picture').content.querySelector('.picture');
 
 function renderMinies(userImages) {
+  pictureContainer.querySelectorAll('.picture').forEach((element) => element.remove());
   userImages.forEach( ({url, comments, likes, description}) => {
     const picture=templatePicture.cloneNode(true);
     picture.querySelector('.picture__img').src=url;
@@ -17,10 +18,3 @@ function renderMinies(userImages) {
 }
 
 export {renderMinies};
-/** ДЕЛЕГИРОВАНИЕ
-pictureContainer.addEventListener('click', (evt) => {
-  if (evt.target.closest('a.picture')) {
-    openBigPicture({url, comments, likes, description});}
-});
-**/
-
